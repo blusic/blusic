@@ -18,6 +18,8 @@
     "start": "electron ."
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.1014.0",
+    "dotenv": "^17.3.1",
     "electron": "^41.0.3"
   }
 }

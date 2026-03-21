@@ -50,6 +50,7 @@ body {
   width: 100%;
   -webkit-app-region: drag;
   position: relative;
+  overflow: visible;
 }
 
 .progress-panel::after {
@@ -164,10 +165,18 @@ body {
 
 
 .track-info {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 10px;
   text-align: right;
   color: #e6e6e6;
   letter-spacing: 0.02em;
   max-width: 60%;
+}
+
+.track-text {
+  min-width: 0;
 }
 
 .track-title {
@@ -185,4 +194,14 @@ body {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+
+.track-thumb {
+  width: 64px;
+  height: 64px;
+  object-fit: cover;
+  border-radius: 6px;
+  background: #1a1a1a;
+  flex: 0 0 auto;
+  transform: translateY(-10px);
 }
