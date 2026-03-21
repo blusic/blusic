@@ -1,5 +1,5 @@
 <h1 align="center" style="font-size:48px;">
-  Blusic - The only way to listen to music
+  Blusic - The Only Good Way To Listen To Music
 </h1>
 
 <p align="center">
