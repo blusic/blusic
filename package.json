@@ -1,0 +1,23 @@
+{
+  "name": "blusic",
+  "version": "0.0.2",
+  "description": "the only way to listen to music",
+  "homepage": "https://github.com/blusic/blusic#readme",
+  "bugs": {
+    "url": "https://github.com/blusic/blusic/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/blusic/blusic.git"
+  },
+  "license": "ISC",
+  "author": "blusic team",
+  "type": "commonjs",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "dependencies": {
+    "electron": "^41.0.3"
+  }
+}
