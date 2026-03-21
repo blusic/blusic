@@ -1,0 +1,188 @@
+@charset "UTF-8";
+
+:root {
+  color-scheme: light;
+  --app-bg: #141414;
+  --panel-bg: #2c2c2c;
+  --panel-edge: rgba(255, 255, 255, 0.12);
+  --panel-shadow: rgba(0, 0, 0, 0.3);
+  --progress-track: #111111;
+  --progress-edge: #3a3a3a;
+  --progress-fill: #36aa89;
+  --progress-fill-light: color-mix(in srgb, var(--progress-fill) 72%, white 28%);
+  --text-muted: #c3c3c3;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background: var(--app-bg);
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  padding: 0;
+  font-family: "Asap", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 518;
+  color: #f2f2f2;
+}
+
+.player-shell {
+  width: 100%;
+}
+
+.progress-panel {
+  padding: 20px 8px 8px;
+  background: #202020;
+  border-radius: 0;
+  border: none;
+  box-shadow: none;
+  display: flex;
+  flex-direction: column;
+  min-height: 86px;
+  width: 100%;
+  -webkit-app-region: drag;
+  position: relative;
+}
+
+.progress-panel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1px solid var(--panel-edge);
+  opacity: 0.7;
+  pointer-events: none;
+  filter: blur(0.6px);
+}
+
+.track-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-muted);
+  font-size: 15px;
+  letter-spacing: 0.04em;
+  margin-bottom: 0;
+  justify-content: space-between;
+}
+
+.time-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transform: translate(6px, 16px);
+  font-size: 14px;
+}
+
+.progress-bar {
+  height: 6px;
+  background: var(--progress-track);
+  border-radius: 999px;
+  border: 1px solid var(--progress-edge);
+  position: relative;
+  overflow: visible;
+  margin-top: auto;
+  cursor: pointer;
+  -webkit-app-region: no-drag;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    var(--progress-fill) 0%,
+    var(--progress-fill) 50%,
+    var(--progress-fill-light) 100%
+  );
+  border-radius: 999px;
+}
+
+.progress-knob {
+  position: absolute;
+  top: 50%;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--progress-fill-light);
+  transform: translate(-50%, -50%) scale(0.8);
+  opacity: 0;
+  transition:
+    opacity 110ms ease,
+    transform 110ms ease;
+  pointer-events: none;
+}
+
+.progress-bar:hover .progress-knob,
+.progress-bar.is-dragging .progress-knob {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1.15);
+}
+
+.play-toggle {
+  position: absolute;
+  left: 50%;
+  top: calc(50% - 4px);
+  transform: translate(-50%, -50%) scale(1);
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  -webkit-app-region: no-drag;
+  z-index: 2;
+  transition:
+    transform 130ms ease,
+    filter 130ms ease;
+}
+
+.play-toggle:hover {
+  transform: translate(-50%, -50%) scale(1.05);
+}
+
+.play-toggle.is-pressed {
+  transform: translate(-50%, -50%) scale(0.95);
+  filter: brightness(0.75);
+}
+
+.play-toggle.is-drag-paused {
+  filter: brightness(0.75);
+}
+
+.play-toggle img {
+  display: block;
+  width: 36px;
+  height: 36px;
+  pointer-events: none;
+}
+
+
+.track-info {
+  text-align: right;
+  color: #e6e6e6;
+  letter-spacing: 0.02em;
+  max-width: 60%;
+}
+
+.track-title {
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.track-artist {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

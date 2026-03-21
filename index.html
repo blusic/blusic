@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blusic</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Asap:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="player-shell">
+      <section class="progress-panel">
+        <div class="track-meta">
+          <div class="time-group">
+            <span class="time">0:47</span>
+            <span class="divider">/</span>
+            <span class="duration">4:16</span>
+          </div>
+          <div class="track-info">
+            <div class="track-title">BIRDDRAIN (feat. OK Glass)</div>
+            <div class="track-artist">Jamie Paige</div>
+          </div>
+        </div>
+        <button class="play-toggle" type="button" aria-label="Play">
+          <img src="./assets/play.png" alt="" />
+        </button>
+        <div
+          class="progress-bar"
+          role="progressbar"
+          aria-valuemin="0"
+          aria-valuemax="100"
+          aria-valuenow="18"
+        >
+          <div class="progress-fill" style="width: 18%"></div>
+          <div class="progress-knob" aria-hidden="true"></div>
+        </div>
+      </section>
+    </main>
+    <script src="./renderer.js" defer></script>
+  </body>
+</html>
