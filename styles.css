@@ -609,4 +609,9 @@ body.player-collapsed {
   transform: translateY(-10%);
   z-index: 3;
   -webkit-app-region: no-drag;
+  transition: filter 0.3s ease;
+}
+
+.track-thumb:playingdisabled {
+  filter: blur(0.13rem);
 }

@@ -231,6 +231,7 @@ const selectSong = (index, autoplay = false) => {
   audio.volume = clamp(perceptual, 0, 1);
   attachAudioEvents(audio, autoplay);
 
+
   if (!autoplay) {
     setPlaying(false);
   }
@@ -568,4 +569,10 @@ if (searchSelect) {
     renderSongsList();
   };
   searchSelect.addEventListener("change", applyMode);
+}
+
+if (!isPlaying) {
+  thumbEl.classList.add("playingdisabled");
+} else {
+  thumbEl.classList.remove("playingdisabled");
 }
