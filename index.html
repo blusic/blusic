@@ -13,18 +13,63 @@
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
+    <section class="library-panel" aria-label="Library">
+      <div class="songs-search">
+        <label class="songs-search-filter" aria-label="Search filter">
+          <span class="visually-hidden">Search filter</span>
+          <select class="songs-search-select">
+            <option value="title" selected>Song</option>
+            <option value="artist">Artist</option>
+          </select>
+        </label>
+        <input
+          class="songs-search-input"
+          type="search"
+          placeholder="Search songs"
+          aria-label="Search songs"
+        />
+      </div>
+      <section class="songs-list" aria-label="Songs"></section>
+    </section>
     <main class="player-shell">
-      <section class="progress-panel">
+      <section class="progress-panel is-collapsed" aria-expanded="false">
+        <button class="player-toggle" type="button" aria-label="Show player">
+          <span class="player-toggle-arrow" aria-hidden="true"></span>
+        </button>
         <div class="track-meta">
-          <div class="time-group">
-            <span class="time">00:00</span>
-            <span class="divider">/</span>
-            <span class="duration">00:00</span>
+          <div class="time-stack">
+            <div class="volume-row">
+              <button class="volume-toggle" type="button" aria-label="Toggle volume">
+                <img class="volume-icon" src="./assets/volume_on.png" alt="" />
+              </button>
+              <div class="volume-slider">
+                <div
+                  class="volume-bar"
+                  role="slider"
+                  aria-label="Volume"
+                  aria-valuemin="0"
+                  aria-valuemax="100"
+                  aria-valuenow="60"
+                >
+                  <div class="volume-fill"></div>
+                  <div class="volume-knob" aria-hidden="true"></div>
+                </div>
+                <label class="volume-label">
+                  <input class="volume-input" type="number" value="60" min="0" max="100" />
+                  <span class="volume-unit">%</span>
+                </label>
+              </div>
+            </div>
+            <div class="time-group">
+              <span class="time">00:00</span>
+              <span class="divider">/</span>
+              <span class="duration">00:00</span>
+            </div>
           </div>
           <div class="track-info">
             <div class="track-text">
-              <div class="track-title">BIRDDRAIN (feat. OK Glass)</div>
-              <div class="track-artist">Jamie Paige</div>
+              <div class="track-title"></div>
+              <div class="track-artist"></div>
             </div>
             <img class="track-thumb" alt="" />
           </div>
