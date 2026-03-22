@@ -69,7 +69,7 @@ const setEmptyState = () => {
   displayedProgress = 0;
   if (titleEl) titleEl.textContent = "";
   if (artistEl) artistEl.textContent = "";
-  if (thumbEl) thumbEl.removeAttribute("src");
+  if (thumbEl) thumbEl.removeAttribute("src"), thumbEl.classList.add("playingdisabled");
   if (timeEl) timeEl.textContent = "00:00";
   if (durationEl) durationEl.textContent = "00:00";
   if (playIcon) playIcon.src = "./assets/play.png";
@@ -139,6 +139,11 @@ const setPlayerCollapsed = (collapsed) => {
 const setPlaying = async (playing) => {
   if (!audio) return;
   isPlaying = playing;
+
+  if (thumbEl) {
+    thumbEl.classList.toggle("playingdisabled", !playing)
+  }
+
   if (playIcon) {
     playIcon.src = playing ? "./assets/pause.png" : "./assets/play.png";
   }
@@ -571,8 +576,10 @@ if (searchSelect) {
   searchSelect.addEventListener("change", applyMode);
 }
 
+/*
 if (!isPlaying) {
   thumbEl.classList.add("playingdisabled");
 } else {
   thumbEl.classList.remove("playingdisabled");
 }
+*/

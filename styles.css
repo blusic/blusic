@@ -603,15 +603,23 @@ body.player-collapsed {
   width: var(--thumb-size);
   height: var(--thumb-size);
   object-fit: cover;
-  border-radius: 6px;
+  border-radius: 12px;
   background: #1a1a1a;
   flex: 0 0 auto;
   transform: translateY(-10%);
   z-index: 3;
   -webkit-app-region: no-drag;
   transition: filter 0.3s ease;
+  transition: transform 1s ease-in-out;
+  transition: border-radius 0.15s ease;
 }
 
-.track-thumb:playingdisabled {
-  filter: blur(0.13rem);
+.track-thumb.playingdisabled {
+  filter: blur(0.43rem);
+}
+.track-thumb:hover {
+  filter: blur(0.0rem);
+  filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.75));
+  transform: translateY(-15%);
+  border-radius: 6px;
 }
