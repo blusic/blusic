@@ -15,6 +15,8 @@ const b2 = new S3Client({
 });
 
 let songsCache = null;
+let songsIndexCache = null;
+let creatorsCache = null;
 
 const getCacheRoot = () => {
   const userData = app.getPath("userData");
@@ -99,6 +101,42 @@ const fetchSongsList = async () => {
   return songs;
 };
 
+const fetchSongsIndex = async () => {
+  if (songsIndexCache) return songsIndexCache;
+  const listObject = await fetchObjectBuffer("json/songs_list.json");
+  const rawJson = listObject.buffer.toString("utf-8");
+  const list = JSON.parse(rawJson);
+  songsIndexCache = list.map((song) => ({
+    title: song.title,
+    artist: song.artist,
+    audio: song.audio,
+    thumbnail: song.thumbnail
+  }));
+  return songsIndexCache;
+};
+
+const toDataUrl = (contentType, buffer) => {
+  return `data:${contentType};base64,${buffer.toString("base64")}`;
+};
+
+const fetchCreatorsList = async () => {
+  if (creatorsCache) return creatorsCache;
+  const listObject = await fetchObjectBuffer("json/profiles.json");
+  const rawJson = listObject.buffer.toString("utf-8");
+  const list = JSON.parse(rawJson);
+  const creators = await Promise.all(
+    list.map(async (creator) => {
+      const pfp = await fetchObjectBuffer(creator.creator_pfp);
+      return {
+        creator_name: creator.creator_name,
+        creator_pfp: toDataUrl(pfp.contentType, pfp.buffer)
+      };
+    })
+  );
+  creatorsCache = creators;
+  return creators;
+};
+
 function createWindow() {
   const win = new BrowserWindow({
     width: 1000,
@@ -118,6 +156,12 @@ function createWindow() {
 app.whenReady().then(() => {
   ipcMain.handle("songs:list", async () => {
     return fetchSongsList();
+  });
+  ipcMain.handle("songs:index", async () => {
+    return fetchSongsIndex();
+  });
+  ipcMain.handle("creators:list", async () => {
+    return fetchCreatorsList();
   });
 
   createWindow();
